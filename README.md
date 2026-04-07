@@ -1,79 +1,88 @@
 # UnoVersion3.0
-🎮 UNO 3.0 (Java)
-📌 Descripción
 
-Este proyecto es una implementación del juego de cartas UNO en Java. Permite jugar contra múltiples jugadores controlados por la computadora, siguiendo las reglas básicas del juego, incluyendo cartas especiales y penalizaciones.
+Juego de UNO en consola desarrollado en Java. Esta versión permite jugar 1 humano contra 3 jugadores controlados por IA (Pepe, Toña, Mari).
 
-🧠 Características principales
-Juego por turnos
-Soporte para jugador humano e inteligencia artificial
-Cartas especiales:
-Salto
-Reversa
-Roba 2
-Roba 4
-Comodín
-Validación de jugadas
-Sistema de penalización por no decir "UNO"
-Selección de color en cartas comodín
+## **Características principales**
 
+- Juego de cartas UNO clásico con las reglas básicas.
+- Soporte para **cartas especiales**:
+  - SALTO
+  - REVERSA
+  - ROBA2
+  - ROBA4
+  - COMODIN (cambio de color)
+- IA básica:
+  - Juega la primera carta válida que encuentre.
+  - Roba una carta si no tiene jugadas válidas.
+  - Dice UNO automáticamente cuando le queda una carta.
+- Detección de UNO:
+  - El jugador humano debe decidir si dice UNO al quedarse con una carta.
+  - Si no dice UNO, se le aplican 2 cartas de penalización.
+- Visualización en consola del estado del juego y cartas de los jugadores.
 
-🏗️ Estructura del proyecto
+---
 
-El sistema está dividido en las siguientes clases:
+## **Clases principales**
 
-Card: Representa una carta del juego (número o especial)
-Deck: Administra el mazo de cartas
-Hand: Maneja las cartas de cada jugador
-Player: Controla el comportamiento del jugador (humano o IA)
-Game: Contiene la lógica principal del juego
-Main: Punto de entrada del programa
+- **Main**: Punto de entrada del programa. Crea una instancia de `Game` y llama a `iniciar()`.
+- **Game**: Controla el flujo del juego, turnos, efectos de cartas y dirección del juego.
+- **Player**: Representa a un jugador (humano o IA) y maneja su mano de cartas.
+- **Hand**: Representa la mano de un jugador, con métodos para jugar, agregar y validar cartas.
+- **Deck**: Representa el mazo de cartas. Permite barajar y robar cartas.
+- **Card**: Representa una carta, su color, tipo y número. Incluye lógica para determinar si es jugable sobre otra carta.
 
+---
 
-🔄 Funcionamiento del juego
-1. Se crean los jugadores (1 humano + 3 IA)
-2. Se reparten 7 cartas a cada jugador
-3. Se coloca una carta inicial en la mesa
-4. Los jugadores juegan por turnos:
-• Si tienen una carta válida, la juegan
-• Si no, roban una carta
-5. Se aplican efectos de cartas especiales
-6. Si un jugador se queda con una carta debe decir "UNO"
-7. Gana el jugador que se queda sin cartas
+## **Cómo jugar**
 
-⚙️ Requisitos
-Java JDK 8 o superior
-Consola o IDE (NetBeans, IntelliJ, Eclipse)
-▶️ Ejecución
-Compilar el proyecto:
+1. Ejecuta `Main.java`.
+2. Ingresa tu nombre cuando se te solicite.
+3. Se repartirán **7 cartas** a cada jugador.
+4. Durante tu turno:
+   - Se mostrará tu mano y la carta en la mesa.
+   - Selecciona el índice de la carta que quieres jugar.
+   - Si solo te queda una carta, se te preguntará si deseas decir UNO (`s/n`).
+   - Si no tienes cartas válidas, automáticamente robas una carta del mazo.
+5. La partida continúa hasta que un jugador se quede sin cartas.
+6. El primer jugador en quedarse sin cartas gana la partida.
+
+---
+
+## **Reglas especiales implementadas**
+
+- Cartas especiales aplican efectos inmediatamente:
+  - **SALTO**: Salta al siguiente jugador.
+  - **REVERSA**: Cambia la dirección del juego.
+  - **ROBA2**: El siguiente jugador roba 2 cartas y pierde turno.
+  - **ROBA4**: El siguiente jugador roba 4 cartas y se elige color.
+  - **COMODIN**: Permite cambiar el color.
+- Penalización de **UNO**:
+  - Si un jugador humano no dice UNO con una carta en mano, roba 2 cartas.
+- Turnos y dirección del juego mostrados visualmente con flechas en consola.
+
+---
+
+## **Requisitos**
+
+- Java 8 o superior
+- Consola para ejecutar el juego
+
+---
+
+## **Mejoras futuras**
+
+- Implementar IA más estratégica (priorizar cartas especiales o colores).
+- Penalización para IA que no diga UNO (simulación más realista).
+- Interfaz gráfica (GUI) en lugar de consola.
+- Guardado y carga de partidas.
+- Soporte multijugador en red.
+
+---
+
+## **Ejecución**
+
+Compilar y ejecutar desde consola:
+
+```bash
 javac Uno3_0/*.java
-Ejecutar:
 java Uno3_0.Main
-
-🎯 Reglas implementadas
-Coincidencia por:
-Color
-Número
-Tipo de carta
-Cartas comodín pueden jugarse en cualquier momento
-Cartas +4 obligan al siguiente jugador a robar 4 cartas
-Si no se dice "UNO", se penaliza con 2 cartas
-
-🤖 Inteligencia Artificial
-
-Los jugadores IA:
-
-Juegan la primera carta válida disponible
-Roban carta si no tienen jugadas
-Eligen color aleatorio en comodines
-
-🚀 Posibles mejoras
-Interfaz gráfica (GUI)
-Modo multijugador real
-Mejorar estrategia de la IA
-Sistema de puntuación
-Guardado de partidas
-
-👤 Autor
-
-Proyecto desarrollado como práctica de Programación Orientada a Objetos en Java.
